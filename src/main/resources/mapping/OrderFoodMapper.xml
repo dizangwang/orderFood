@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.drink.sell.mapper.OrderFoodMapper">
+  <resultMap id="BaseResultMap" type="com.drink.sell.bean.OrderFood">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="food_id" jdbcType="VARCHAR" property="foodId" />
+    <result column="food_name" jdbcType="VARCHAR" property="foodName" />
+    <result column="food_price" jdbcType="VARCHAR" property="foodPrice" />
+    <result column="food_unit" jdbcType="VARCHAR" property="foodUnit" />
+    <result column="food_amount" jdbcType="DECIMAL" property="foodAmount" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, food_id, food_name, food_price, food_unit, food_amount, update_time, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_food
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_food
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.drink.sell.bean.OrderFood">
+    insert into order_food (id, order_id, food_id, 
+      food_name, food_price, food_unit, 
+      food_amount, update_time, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{foodId,jdbcType=VARCHAR}, 
+      #{foodName,jdbcType=VARCHAR}, #{foodPrice,jdbcType=VARCHAR}, #{foodUnit,jdbcType=VARCHAR}, 
+      #{foodAmount,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.drink.sell.bean.OrderFood">
+    insert into order_food
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="foodId != null">
+        food_id,
+      </if>
+      <if test="foodName != null">
+        food_name,
+      </if>
+      <if test="foodPrice != null">
+        food_price,
+      </if>
+      <if test="foodUnit != null">
+        food_unit,
+      </if>
+      <if test="foodAmount != null">
+        food_amount,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="foodId != null">
+        #{foodId,jdbcType=VARCHAR},
+      </if>
+      <if test="foodName != null">
+        #{foodName,jdbcType=VARCHAR},
+      </if>
+      <if test="foodPrice != null">
+        #{foodPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="foodUnit != null">
+        #{foodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="foodAmount != null">
+        #{foodAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.drink.sell.bean.OrderFood">
+    update order_food
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="foodId != null">
+        food_id = #{foodId,jdbcType=VARCHAR},
+      </if>
+      <if test="foodName != null">
+        food_name = #{foodName,jdbcType=VARCHAR},
+      </if>
+      <if test="foodPrice != null">
+        food_price = #{foodPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="foodUnit != null">
+        food_unit = #{foodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="foodAmount != null">
+        food_amount = #{foodAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.drink.sell.bean.OrderFood">
+    update order_food
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      food_id = #{foodId,jdbcType=VARCHAR},
+      food_name = #{foodName,jdbcType=VARCHAR},
+      food_price = #{foodPrice,jdbcType=VARCHAR},
+      food_unit = #{foodUnit,jdbcType=VARCHAR},
+      food_amount = #{foodAmount,jdbcType=DECIMAL},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
